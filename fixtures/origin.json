@@ -35,8 +35,34 @@
   },
   "routes": {
     "/feed": {
-      "body": "<!doctype html><html lang='zh'><meta charset='utf-8'><title>来源目录</title><body>\n<article><h2>来源记录</h2>\n<dl><dt>district</dt><dd>east</dd><dt>form_version</dt><dd>2026-a</dd><dt>field</dt><dd>business_licence</dd><dt>label</dt><dd>经营许可</dd><dt>required</dt><dd>True</dd><dt>application_type</dt><dd>lab</dd></dl>\n<form action=\"/portal/submit\" method=\"post\"><input type=\"hidden\" name=\"csrf\" value=\"form-2026-b\"><input name=\"id\" value=\"business_licence\"><button type=\"submit\">确认</button></form>\n</article>\n<article><h2>来源记录</h2>\n<dl><dt>district</dt><dd>west</dd><dt>form_version</dt><dd>2026-b</dd><dt>field</dt><dd>industry_a</dd><dt>label</dt><dd>行业资质一</dd><dt>required</dt><dd>True</dd><dt>application_type</dt><dd>lab</dd></dl>\n<form action=\"/portal/submit\" method=\"post\"><input type=\"hidden\" name=\"csrf\" value=\"form-2026-b\"><input name=\"id\" value=\"industry_a\"><button type=\"submit\">确认</button></form>\n</article>\n<article><h2>来源记录</h2>\n<dl><dt>district</dt><dd>west</dd><dt>form_version</dt><dd>2026-b</dd><dt>field</dt><dd>industry_b</dd><dt>label</dt><dd>行业资质二</dd><dt>required</dt><dd>True</dd><dt>application_type</dt><dd>lab</dd></dl>\n<form action=\"/portal/submit\" method=\"post\"><input type=\"hidden\" name=\"csrf\" value=\"form-2026-b\"><input name=\"id\" value=\"industry_b\"><button type=\"submit\">确认</button></form>\n</article>\n<script type=\"application/json\" id=\"source-records\">[{\"district\": \"east\", \"form_version\": \"2026-a\", \"field\": \"business_licence\", \"label\": \"经营许可\", \"required\": true, \"application_type\": \"lab\"}, {\"district\": \"west\", \"form_version\": \"2026-b\", \"field\": \"industry_a\", \"label\": \"行业资质一\", \"required\": true, \"application_type\": \"lab\"}, {\"district\": \"west\", \"form_version\": \"2026-b\", \"field\": \"industry_b\", \"label\": \"行业资质二\", \"required\": true, \"application_type\": \"lab\"}]</script></body></html>",
-      "content_type": "text/html; charset=utf-8",
+      "json": {
+        "items": [
+          {
+            "district": "east",
+            "form_version": "2026-a",
+            "field": "business_licence",
+            "label": "经营许可",
+            "required": true,
+            "application_type": "lab"
+          },
+          {
+            "district": "west",
+            "form_version": "2026-b",
+            "field": "industry_a",
+            "label": "行业资质一",
+            "required": true,
+            "application_type": "lab"
+          },
+          {
+            "district": "west",
+            "form_version": "2026-b",
+            "field": "industry_b",
+            "label": "行业资质二",
+            "required": true,
+            "application_type": "lab"
+          }
+        ]
+      },
       "headers": {
         "ETag": "feed-1"
       }
