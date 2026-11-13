@@ -1,0 +1,17 @@
+[
+  {
+    "name": "scoped_decision",
+    "situation": "一个项目的人工例外",
+    "observable": "不污染其他项目映射"
+  },
+  {
+    "name": "split_field",
+    "situation": "门户将旧字段拆为两个必填字段",
+    "observable": "草稿与映射同时进入复核"
+  },
+  {
+    "name": "plan_stale",
+    "situation": "确认填报计划后表单再变",
+    "observable": "旧计划不能直接执行"
+  }
+]
