@@ -1,0 +1,236 @@
+{
+  "note": "本地合成的门户演练资料：两个区县、同一申报类别、一次字段拆分升级。所有机构、文件、令牌与回执均为虚构。",
+  "applications": [
+    {
+      "application_id": "APP-EAST-001",
+      "district": "east",
+      "application_type": "lab",
+      "form_version": "2026-a",
+      "files": [
+        {
+          "file_id": "FILE-E-01",
+          "name": "行业证明-甲区.pdf",
+          "digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+          "kind": "industry_cert",
+          "districts": [
+            "east"
+          ],
+          "application_types": [
+            "lab"
+          ]
+        }
+      ]
+    },
+    {
+      "application_id": "APP-WEST-001",
+      "district": "west",
+      "application_type": "lab",
+      "form_version": "2026-b",
+      "files": [
+        {
+          "file_id": "FILE-W-01",
+          "name": "行业资质-综合.pdf",
+          "digest": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+          "kind": "industry_cert",
+          "districts": [
+            "west"
+          ],
+          "application_types": [
+            "lab"
+          ]
+        }
+      ]
+    },
+    {
+      "application_id": "APP-WEST-003",
+      "district": "west",
+      "application_type": "lab",
+      "form_version": "2026-b",
+      "files": [
+        {
+          "file_id": "FILE-W-05",
+          "name": "行业资质-另一申请.pdf",
+          "digest": "sha256:6666666666666666666666666666666666666666666666666666666666666666",
+          "kind": "industry_cert",
+          "districts": [
+            "west"
+          ],
+          "application_types": [
+            "lab"
+          ]
+        }
+      ]
+    },
+    {
+      "application_id": "APP-WEST-002",
+      "district": "west",
+      "application_type": "lab",
+      "form_version": "2026-c",
+      "files": [
+        {
+          "file_id": "FILE-W-02",
+          "name": "行业资质-第一部分.pdf",
+          "digest": "sha256:3333333333333333333333333333333333333333333333333333333333333333",
+          "kind": "industry_cert_part_a",
+          "districts": [
+            "west"
+          ],
+          "application_types": [
+            "lab"
+          ]
+        },
+        {
+          "file_id": "FILE-W-03",
+          "name": "行业资质-第二部分.pdf",
+          "digest": "sha256:4444444444444444444444444444444444444444444444444444444444444444",
+          "kind": "industry_cert_part_b",
+          "districts": [
+            "west"
+          ],
+          "application_types": [
+            "lab"
+          ]
+        },
+        {
+          "file_id": "FILE-W-04",
+          "name": "来源不明的扫描页.pdf",
+          "digest": "sha256:5555555555555555555555555555555555555555555555555555555555555555",
+          "kind": "unclassified_scan",
+          "districts": [
+            "west"
+          ],
+          "application_types": [
+            "lab"
+          ]
+        }
+      ]
+    }
+  ],
+  "forms": [
+    {
+      "district": "east",
+      "application_type": "lab",
+      "version": "2026-a",
+      "fields": [
+        {
+          "name": "business_licence",
+          "label": "经营许可",
+          "required": true,
+          "accepts": [
+            "industry_cert"
+          ]
+        }
+      ]
+    },
+    {
+      "district": "west",
+      "application_type": "lab",
+      "version": "2026-b",
+      "fields": [
+        {
+          "name": "industry_a",
+          "label": "行业资质一",
+          "required": true,
+          "accepts": [
+            "industry_cert"
+          ]
+        },
+        {
+          "name": "industry_b",
+          "label": "行业资质二",
+          "required": true
+        }
+      ]
+    },
+    {
+      "district": "west",
+      "application_type": "lab",
+      "version": "2026-c",
+      "fields": [
+        {
+          "name": "industry_a_1",
+          "label": "行业资质一（第一部分）",
+          "required": true,
+          "accepts": [
+            "industry_cert_part_a"
+          ],
+          "split_of": "industry_a"
+        },
+        {
+          "name": "industry_a_2",
+          "label": "行业资质一（第二部分）",
+          "required": true,
+          "accepts": [
+            "industry_cert_part_b"
+          ],
+          "split_of": "industry_a"
+        },
+        {
+          "name": "industry_b",
+          "label": "行业资质二",
+          "required": true,
+          "accepts": [
+            "industry_cert"
+          ]
+        }
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "RULE-WEST-B-01",
+      "scope": {
+        "district": "west",
+        "application_type": "lab",
+        "form_version": "2026-b"
+      },
+      "target_field": "industry_a",
+      "accepts": [
+        "industry_cert"
+      ],
+      "origin": "manual",
+      "note": "乙区 2026-b 将行业证明归入资质一；资质二需另附材料。",
+      "placement": "primary"
+    }
+  ],
+  "case_decisions": [
+    {
+      "decision_id": "CASE-WEST-001-A",
+      "application_id": "APP-WEST-001",
+      "file_id": "FILE-W-01",
+      "scope": {
+        "district": "west",
+        "application_type": "lab",
+        "form_version": "2026-b"
+      },
+      "action": "assign",
+      "target_field": "industry_b",
+      "placement": "copy",
+      "note": "纸质件只有一份合并证明，窗口核验原件后同意资质二以复制件归档。"
+    }
+  ],
+  "drafts": [
+    {
+      "draft_id": "DRAFT-WEST-001",
+      "application_id": "APP-WEST-001",
+      "form_key": "west|lab|2026-b",
+      "prepared_at": "2026-11-14T10:00:00.000000Z",
+      "entries": [
+        {
+          "field": "industry_a",
+          "file_id": "FILE-W-01",
+          "placement": "primary"
+        },
+        {
+          "field": "industry_b",
+          "file_id": "FILE-W-01",
+          "placement": "copy"
+        }
+      ]
+    }
+  ],
+  "portal": {
+    "submit_path": "/portal/submit",
+    "status_path": "/portal/status"
+  }
+}
