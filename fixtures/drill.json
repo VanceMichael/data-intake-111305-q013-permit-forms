@@ -1,0 +1,24 @@
+{
+  "portal": {
+    "csrf": "west-form-2026-b"
+  },
+  "routes": {
+    "/form/current": {
+      "body": "<!doctype html><html lang='zh'><meta charset='utf-8'><title>乙区实验类申报 2026-b</title><body>\n<h1>乙区（west）实验类申报表单 · 版本 2026-b</h1>\n<form action=\"/portal/submit\" method=\"post\"><input type=\"hidden\" name=\"csrf\" value=\"west-form-2026-b\"><input name=\"id\" value=\"\"><button type=\"submit\">提交</button></form>\n<script type=\"application/json\" id=\"source-records\">[{\"district\": \"west\", \"form_version\": \"2026-b\", \"field\": \"industry_a\", \"label\": \"行业资质一\", \"required\": true, \"application_type\": \"lab\"}, {\"district\": \"west\", \"form_version\": \"2026-b\", \"field\": \"industry_b\", \"label\": \"行业资质二\", \"required\": true, \"application_type\": \"lab\"}, {\"district\": \"west\", \"form_version\": \"2026-b\", \"field\": \"remark\", \"label\": \"备注\", \"required\": false, \"application_type\": \"lab\"}]</script></body></html>",
+      "content_type": "text/html; charset=utf-8",
+      "headers": {
+        "ETag": "west-2026-b"
+      }
+    }
+  },
+  "upgrade": {
+    "csrf": "west-form-2026-c",
+    "route": {
+      "body": "<!doctype html><html lang='zh'><meta charset='utf-8'><title>乙区实验类申报 2026-c</title><body>\n<h1>乙区（west）实验类申报表单 · 版本 2026-c</h1>\n<form action=\"/portal/submit\" method=\"post\"><input type=\"hidden\" name=\"csrf\" value=\"west-form-2026-c\"><input name=\"id\" value=\"\"><button type=\"submit\">提交</button></form>\n<script type=\"application/json\" id=\"source-records\">[{\"district\": \"west\", \"form_version\": \"2026-c\", \"field\": \"industry_a\", \"label\": \"行业资质一\", \"required\": true, \"application_type\": \"lab\"}, {\"district\": \"west\", \"form_version\": \"2026-c\", \"field\": \"industry_b1\", \"label\": \"行业资质二·正本\", \"required\": true, \"application_type\": \"lab\"}, {\"district\": \"west\", \"form_version\": \"2026-c\", \"field\": \"industry_b2\", \"label\": \"行业资质二·副本\", \"required\": true, \"application_type\": \"lab\"}, {\"district\": \"west\", \"form_version\": \"2026-c\", \"field\": \"remark\", \"label\": \"备注\", \"required\": false, \"application_type\": \"lab\"}]</script></body></html>",
+      "content_type": "text/html; charset=utf-8",
+      "headers": {
+        "ETag": "west-2026-c"
+      }
+    }
+  }
+}

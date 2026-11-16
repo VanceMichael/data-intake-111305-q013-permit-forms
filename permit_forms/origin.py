@@ -25,6 +25,7 @@ class Origin(ThreadingHTTPServer):
         self.offsets = {}
         self.requests = []
         self.receipts = {}
+        self.receipt_counter = 0
         self.state_lock = threading.Lock()
         super().__init__(("127.0.0.1", 0), Handler)
 
@@ -115,7 +116,8 @@ class Handler(BaseHTTPRequestHandler):
             elif not fields.get("id"):
                 status, payload = 422, {"error": "identity_required"}
             else:
-                receipt = "ACK-" + str(len(self.server.receipts) + 1)
+                self.server.receipt_counter += 1
+                receipt = "ACK-" + str(self.server.receipt_counter)
                 self.server.receipts[fields["id"]] = receipt
                 if fields.get("lose_response") == "yes":
                     self.close_connection = True

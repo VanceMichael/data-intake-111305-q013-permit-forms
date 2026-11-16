@@ -1,17 +1,22 @@
 [
   {
-    "name": "name",
-    "situation": "situation",
-    "observable": "observable"
+    "name": "同证异区栏目不同",
+    "situation": "同一份行业证明在甲区（east）2026-a 表单对应经营许可单一栏目 business_licence，在乙区（west）2026-b 表单需拆至 industry_a 与 industry_b 两个必填栏目",
+    "observable": "映射规则按 (district, application_type, form_version) 精确生效；甲区规则不出现在乙区建议依据中，乙区一条可复用规则把同一文件建议到两个栏目，且每条建议带裁定理由"
   },
   {
-    "name": "name",
-    "situation": "situation",
-    "observable": "observable"
+    "name": "项目内例外不外溢",
+    "situation": "项目 P2 经人工裁定以补充证明单独覆盖 industry_b，同范围的 P1、P3 未做此裁定；表单刷新与后续办件继续进行",
+    "observable": "P2 的 industry_b 建议依据为项目内例外（带 project_id），P1/P3 仍依据可复用规则；例外不进入其他项目、其他表单版本的依据，刷新后裁定不被覆盖"
   },
   {
-    "name": "name",
-    "situation": "situation",
-    "observable": "observable"
+    "name": "表单升级拆分字段",
+    "situation": "乙区表单从 2026-b 升级到 2026-c，industry_b 被拆分为 industry_b1/industry_b2 两个必填栏目，csrf 令牌同时轮换",
+    "observable": "影响报告同时列出删除/新增字段、被标记 impacted 的旧规则和 stale 的未执行计划；新字段在重新裁定前保持证据不足，历史规则仅作背景展示，不作建议依据"
+  },
+  {
+    "name": "必填缺失不自动提交",
+    "situation": "门户必填栏目尚未满足时生成填报计划；计划确认后表单再次变化",
+    "observable": "必填缺失的计划为 blocked 且不可确认；任何计划只在确认后、执行时表单摘要一致才提交，否则拒绝且不发出 POST，门户对过时令牌返回 409"
   }
 ]

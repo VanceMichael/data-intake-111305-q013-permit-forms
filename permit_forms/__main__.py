@@ -26,6 +26,7 @@ def main():
     parser = argparse.ArgumentParser(description="来源响应接收与归档")
     subcommands = parser.add_subparsers(dest="command", required=True)
     subcommands.add_parser("demo")
+    subcommands.add_parser("drill")
     collector = subcommands.add_parser("capture")
     collector.add_argument("--base-url", required=True)
     collector.add_argument("--archive", type=Path, required=True)
@@ -38,6 +39,9 @@ def main():
         with tempfile.TemporaryDirectory() as temporary, serve() as origin:
             result = capture(origin.base_url, Path(temporary) / "archive.sqlite3", "local-source", "/feed")
             print(json.dumps({"operation": "raw_capture", **result}, ensure_ascii=False, indent=2))
+    elif args.command == "drill":
+        from .drill import run_drill
+        print(json.dumps(run_drill(), ensure_ascii=False, indent=2))
     elif args.command == "capture":
         print(json.dumps(capture(args.base_url, args.archive, args.source, args.path), ensure_ascii=False, indent=2))
     else:

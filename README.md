@@ -17,9 +17,25 @@ python3 -m unittest discover -s tests -v
 python3 -m build --wheel --no-isolation
 python3 -m compileall -q permit_forms tests
 python3 -m permit_forms demo
+python3 -m permit_forms drill
 ```
 
 演示从空的临时目录启动本地来源，真实完成一次 HTTP 获取及归档，并输出原样记录；结束自动清理。本地测试、编译和演示合计一般不超过十秒，可直接展示，不依赖历史日志。
+
+## 材料映射与填报计划
+
+`mapping.py` 与 `forms.py` 在原始接收之上提供业务层，模型详见 `docs/material-mapping.md`：
+
+- 映射按（地区、申报类别、表单版本）精确生效，跨范围不自动适用；字段建议逐条给出依据（裁定编号、理由、裁定人），证据不足时明确列出已检查项，历史规则只作背景不作依据，不做相似词猜测。
+- 人工裁定分项目内例外与可复用规则两种：例外只影响对应项目，不会被推广；建议每次由裁定实时推导，表单刷新不会覆盖人工确认。
+- 门户升级删字段或拆字段时，影响报告同时标出受影响旧映射（impacted）与未执行计划（stale）；原文件、裁定与状态迁移全部留痕可查。
+- 必填项未满足的计划为 blocked，不确认、不提交；确认后表单再变化，执行时摘要不一致即拒绝，门户对过时令牌亦返回 409。
+
+```sh
+python3 -m permit_forms drill
+```
+
+演练在本地门户上完整走一遍映射审阅、计划确认与版本变化衔接，场景由 `fixtures/drill.json` 逐项声明，输出按步骤组织的 JSON。
 
 ## 常驻来源与接收
 
@@ -37,7 +53,7 @@ python3 -m permit_forms capture --base-url http://127.0.0.1:实际端口 --archi
 
 ## 开发资料
 
-来源协议见 `docs/source-protocol.md`，领域观察关系见 `tests/test_source_contract.py`。`fixtures/business_cases.json` 保存业务侧关注的交错情况及可观察口径；基础版测试验证的是原始采集和协议，不代表业务处理已经具备这些能力。所有条目、机构、文件内容和门户回执均为本地合成资料，不包含真实用户身份。
+来源协议见 `docs/source-protocol.md`，材料映射模型见 `docs/material-mapping.md`，领域观察关系见 `tests/test_source_contract.py`。`fixtures/business_cases.json` 保存业务侧关注的交错情况及可观察口径，与 `python3 -m permit_forms drill` 的演练步骤一一对应。所有条目、机构、文件内容和门户回执均为本地合成资料，不包含真实用户身份。
 
 ## Wheel 分发
 

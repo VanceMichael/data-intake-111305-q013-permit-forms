@@ -23,3 +23,5 @@
 - `name`：situation；业务侧关注observable。
 
 另外提供 `/rate-limited`、`/unstable`、`/range`、`/range-ignored`、`/truncated`、`/observations/1`、`/observations/2`、`/observations/3`。响应内容和版本由场景文件逐项声明，便于核对实际收到的来源资料。
+
+材料映射演练使用独立场景 `fixtures/drill.json`：路由 `/form/current` 发布乙区当前表单，场景内 `upgrade` 块逐项声明升级后的表单与新令牌，演练程序在运行中将升级应用到本地门户。模型与步骤见 `docs/material-mapping.md`。
